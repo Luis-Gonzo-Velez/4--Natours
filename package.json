@@ -1,0 +1,23 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "Learning node, express and mongoDb",
+  "homepage": "https://github.com/Luis-Gonzo-Velez/4--Natours#readme",
+  "bugs": {
+    "url": "https://github.com/Luis-Gonzo-Velez/4--Natours/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Luis-Gonzo-Velez/4--Natours.git"
+  },
+  "license": "ISC",
+  "author": "jonas Schmedtmann",
+  "type": "commonjs",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^4.22.2"
+  }
+}
