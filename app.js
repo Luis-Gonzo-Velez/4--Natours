@@ -3,6 +3,9 @@ const express = require('express');
 
 const app = express();
 
+app.use(express.json());
+
+
 // app.get('/', (req, res) => {
 //   res
 //     .status(202)
@@ -13,8 +16,24 @@ const app = express();
 //   res.send('You can post to this endpoint...');
 // });
 
-const tours = fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`);
-app.get('/api/v1/tours', (req, res) => {});
+const tours = JSON.parse(
+  fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`),
+);
+
+app.get('/api/v1/tours', (req, res) => {
+  res.status(200).json({
+    status: 'success',
+    results: tours.lenght,
+    data: {
+      tours,
+    },
+  });
+});
+
+app.post('/api/v1/tours', (req, res) => {
+  console.log(req.body);
+  res.send('Done');
+});
 
 const port = 3000;
 app.listen(port, () => {
