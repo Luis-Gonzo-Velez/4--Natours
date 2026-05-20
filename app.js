@@ -30,7 +30,26 @@ app.get('/api/v1/tours', (req, res) => {
 });
 
 app.post('/api/v1/tours', (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
+
+  const newId = tours[tours.lenght - 1].id + 1;
+  const newTour = Object.assign({ id: newId }, req.body);
+
+  tours.push(newTour);
+
+  fs.writeFile(
+    `${__dirname}/dev-data/data/tours-simple.json`,
+    JSON.stringigy(tours),
+    (err) => {
+      res.status(201).json({
+        status: 'succes',
+        data: {
+          tour: newTour,
+        },
+      });
+    },
+  );
+
   res.send('Done');
 });
 
