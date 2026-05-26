@@ -2,24 +2,13 @@ const fs = require('fs');
 const express = require('express');
 
 const app = express();
-
 app.use(express.json());
-
-// app.get('/', (req, res) => {
-//   res
-//     .status(202)
-//     .json({ message: 'Hello from the server side!', app: 'Natours' });
-// });
-
-// app.post('/', (req, res) => {
-//   res.send('You can post to this endpoint...');
-// });
 
 const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`),
 );
 
-app.get('/api/v1/tours', (req, res) => {
+const getAllTours = (req, res) => {
   res.status(200).json({
     status: 'success',
     results: tours.length,
@@ -27,9 +16,9 @@ app.get('/api/v1/tours', (req, res) => {
       tours,
     },
   });
-});
+};
 
-app.get('/api/v1/tours/:id', (req, res) => {
+const getTour = (req, res) => {
   console.log(req.params);
   const id = req.params.id * 1;
   const tour = tours.find((el) => el.id === id);
@@ -48,7 +37,11 @@ app.get('/api/v1/tours/:id', (req, res) => {
       tour,
     },
   });
-});
+};
+
+app.get('/api/v1/tours', getAllTours);
+
+app.get('/api/v1/tours/:id', getTour);
 
 app.post('/api/v1/tours', (req, res) => {
   // console.log(req.body);
