@@ -10,8 +10,8 @@ app.use((req, res, next) => {
 });
 
 app.use((req, res, next) => {
-  req.requestTime = new Date()toISOString;
-  next()
+  req.requestTime = new Date().toISOString();
+  next();
 });
 
 const tours = JSON.parse(
