@@ -23,8 +23,7 @@ const tours = JSON.parse(
   fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`),
 );
 
-//ROUTE HANDLERS
-
+// 2) ROUTE HANDLERS
 const getAllTours = (req, res) => {
   console.log(req.requestTime);
   res.status(200).json({
@@ -139,12 +138,8 @@ const deleteUser = (req, res) => {
 };
 
 //3) ROUTES
-const tourRouter = express.Router();
+
 const userRouter = express.Router();
-
-tourRouter.route('/').get(getAllTours).post(createTour);
-
-tourRouter.route('/:id').get(getTour).patch(updateTour).delete(deleteTour);
 
 userRouter.route('/api/v1/users').get(getAllUsers).post(createUser);
 
